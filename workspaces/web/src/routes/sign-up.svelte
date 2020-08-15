@@ -4,6 +4,7 @@
   import NavBar from "../components/NavBar.svelte"
   import Button from "lluis/Button"
   import FormField from "lluis/FormField"
+  import { _ } from "svelte-i18n"
 
   let loading = false
 
@@ -17,177 +18,175 @@
   const emailRegexp = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 
   const validateUsername = () => {
-    if (!username) {
-      errors = {
-        ...errors,
-        username: "Please choose a username",
+      if (!username) {
+          errors = {
+              ...errors,
+              username: $_('signup.username_absent'),
+          }
+
+          return
       }
 
-      return
-    }
+      if (username.length < 4) {
+          errors = {
+              ...errors,
+              username: $_('signup.username_too_short'),
+          }
 
-    if (username.length < 4) {
-      errors = {
-        ...errors,
-        username: "Please choose a username that has at least 4 characters",
+          return
       }
-
-      return
-    }
   }
 
   const validateEmail = () => {
-    if (!email) {
-      errors = {
-        ...errors,
-        email: "Please tell us your email address",
+      if (!email) {
+          errors = {
+              ...errors,
+              email: $_('signup.email_absent'),
+          }
+
+          return
       }
 
-      return
-    }
+      if (!emailRegexp.test(email)) {
+          errors = {
+              ...errors,
+              email: $_('signup.email_invalid'),
+          }
 
-    if (!emailRegexp.test(email)) {
-      errors = {
-        ...errors,
-        email: "This does not look like a valid email address",
+          return
       }
-
-      return
-    }
   }
 
   const validatePassword = () => {
-    if (!password) {
-      errors = {
-        ...errors,
-        password: "Please choose a password",
+      if (!password) {
+          errors = {
+              ...errors,
+              password: $_('signup.password_absent'),
+          }
+
+          return
       }
 
-      return
-    }
+      if (password.length < 6) {
+          errors = {
+              ...errors,
+              password: $_('signup.password_too_short'),
+          }
 
-    if (password.length < 6) {
-      errors = {
-        ...errors,
-        password:
-          "Your password is too short. Please choose a password that's at least 5 characters long.",
+          return
       }
 
-      return
-    }
+      if (!password_confirmation) {
+          errors = {
+              ...errors,
+              password_confirmation: $_('signup.password_confirmation_absent'),
+          }
 
-    if (!password_confirmation) {
-      errors = {
-        ...errors,
-        password_confirmation:
-          "Please verify your chosen password by repeating it",
+          return
       }
 
-      return
-    }
+      if (password !== password_confirmation) {
+          errors = {
+              ...errors,
+              password_confirmation: $_('signup.password_mismatch'),
+          }
 
-    if (password !== password_confirmation) {
-      errors = {
-        ...errors,
-        password_confirmation: "The passwords don't match",
+          return
       }
-
-      return
-    }
   }
 
   const validateLicense = () => {
-    if (!license_accepted) {
-      errors = {
-        ...errors,
-        license: "You have to accept the agreements.",
+      if (!license_accepted) {
+          errors = {
+              ...errors,
+              license: $_('signup.license_not_accepted')
+          }
+
+          return
       }
 
-      return
-    }
+      if (username.length < 4) {
+          errors = {
+              ...errors,
+              username: $_('signup.username_too_short'),
+          }
 
-    if (username.length < 4) {
-      errors = {
-        ...errors,
-        username: "Please choose a username that has at least 4 characters",
+          return
       }
-
-      return
-    }
   }
 
   const handleTestingFakes = () => {
-    if (window._test_fake_signup) {
-      if (window._test_user_already_exists) {
-        errors = {
-          ...errors,
-          _form: "User already exists. Please choose another username.",
-        }
-        return
+      if (window._test_fake_signup) {
+          if (window._test_user_already_exists) {
+              errors = {
+                  ...errors,
+                  _form: $_('signup.username_already_exists'),
+              }
+              return
+          }
       }
-    }
   }
 
   let handleSignUp
   $: {
-    handleSignUp = async () => {
-      loading = true
-      errors = {}
-      validateUsername()
-      validateEmail()
-      validatePassword()
-      validateLicense()
-      handleTestingFakes()
-      const isFormValid = Object.keys(errors).length === 0
+      handleSignUp = async () => {
+          loading = true
+          errors = {}
+                   validateUsername()
+                   validateEmail()
+                   validatePassword()
+                   validateLicense()
+                   handleTestingFakes()
+                   const isFormValid = Object.keys(errors).length === 0
 
-      if (process.browser === true) {
-        if (window._test_fake_signup) {
-          setTimeout(function () {
-            if (isFormValid === true) {
-              loading = false
-              window.location = "/sign-up-success"
-            } else {
-              loading = false
-            }
-          }, 500)
-        } else {
-          if (isFormValid) {
-            fetch(settings.database.signUpEndpoint, {
-              method: "post",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                username,
-                email,
-                password,
-              }),
-            })
-              .then((data) => data.json())
-              .then(({ success, error }) => {
-                if (success) {
-                  loading = false
-                  window.location = "/sign-up-success"
-                } else {
-                  loading = false
-                  if (error.code === "invalid-payload") {
-                    errors = error.details
-                  } else {
-                    errors = { _form: "Server error" }
-                  }
-                }
-              })
-          } else {
-            loading = false
-          }
-        }
+                   if (process.browser === true) {
+                       if (window._test_fake_signup) {
+                           setTimeout(function () {
+                               if (isFormValid === true) {
+                                   loading = false
+                                   window.location = "/sign-up-success"
+                               } else {
+                                   loading = false
+                               }
+                           }, 500)
+                       } else {
+                           if (isFormValid) {
+                               fetch(settings.database.signUpEndpoint, {
+                                   method: "post",
+                                   headers: {
+                                       "Content-Type": "application/json",
+                                   },
+                                   body: JSON.stringify({
+                                       username,
+                                       email,
+                                       password,
+                                   }),
+                               })
+                               .then((data) => data.json())
+                               .then(({ success, error }) => {
+                                   if (success) {
+                                       loading = false
+                                       window.location = "/sign-up-success"
+                                   } else {
+                                       loading = false
+                                       if (error.code === "invalid-payload") {
+                                           errors = error.details
+                                       } else {
+                                           errors = { _form: "Server error" }
+                                       }
+                                   }
+                               })
+                           } else {
+                               loading = false
+                           }
+                       }
+                   }
+                   }
       }
-    }
-  }
 </script>
 
 <svelte:head>
-  <title>Sign up - LibreLingo</title>
+  <title>{$_('signup.title')} - LibreLingo</title>
 </svelte:head>
 
 <NavBar dark />
@@ -197,29 +196,29 @@
   <div class="container">
 
     <form on:submit|preventDefault="{handleSignUp}">
-      <h2 class="is-size-2">Sign up</h2>
+      <h2 class="is-size-2">{$_('signup.title')}</h2>
 
       <FormField
-        name="Username"
+        name={$_('signup.username')}
         icon="user"
         id="username"
         formStatus="{errors}"
         bind:value="{username}" />
       <FormField
-        name="Email"
+        name={$_('signup.email')}
         icon="envelope"
         id="email"
         formStatus="{errors}"
         bind:value="{email}" />
       <FormField
-        name="Password"
+          name={$_('signup.password')}
         icon="lock"
         id="password"
         type="password"
         formStatus="{errors}"
         bind:value="{password}" />
       <FormField
-        name="Repeat password"
+        name={$_('signup.password_repeat')}
         icon="lock"
         id="password_confirmation"
         type="password"
@@ -233,11 +232,13 @@
               type="checkbox"
               name="license"
               id="license"
-              bind:checked="{license_accepted}" />
-            I agree to the
-            <a href="/tos">Terms and Conditions</a>
-            and the
-            <a href="/license">GNU Affero General Public License</a>
+                bind:checked="{license_accepted}" />
+            {@html $_('signup.license_agreement',
+                {values: {
+                    tos: `<a href="/tos">${$_('signup.tos')}</a>`,
+                    gnu_license: `<a href="/license">${$_('signup.gnu_license')}</a>`
+                }
+              }) }
           </label>
         </div>
         {#if errors['license'] != null}
@@ -254,7 +255,7 @@
         {loading}
         asHref="/sign-up-success"
         submit>
-        Sign up
+        {$_('signup.title')}
       </Button>
     </form>
   </div>
