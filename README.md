@@ -1,8 +1,8 @@
 ![Build status](https://kantord.semaphoreci.com/badges/LibreLingo.svg?style=shields "Build status")
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/LibreLingo/LibreLingo)
 [![BCH compliance](https://bettercodehub.com/edge/badge/kantord/LibreLingo?branch=master)](https://bettercodehub.com/)
-![GitHub PageSpeed](https://api.speedbadge.io/v1?url=librelingo.app)
 ![David](https://img.shields.io/david/kantord/LibreLingo)
+[![Donate via PayPal](https://img.shields.io/badge/donate-via%20paypal-brightgreen)](https://www.paypal.com/pools/c/8np3GCVeiF)
 
  
 <h1 align="center">
@@ -16,9 +16,9 @@
 
 My goal is to start a community-driven language-learning platform that gives it's users and contributors a way to influence its future and adapt it to special requirements.
 
-To achieve that, I release all source code under the GPLv3 free software license, which guarantees end users the freedom to run, study, share, and modify the software.
+To achieve that, I release all source code under the AGPLv3 free software license, which guarantees end users the freedom to run, study, share, and modify the software.
 
-In addition to licensing the software under a free software license, the course content will be decoupled from the software itself, and the development of GPLv3 or public domain course content will be encouraged. This should allow course developers to retain the freedom to choose how they use their work.
+In addition to licensing the software under a free software license, the course content will be decoupled from the software itself, and the development of AGPLv3 or public domain course content will be encouraged. This should allow course developers to retain the freedom to choose how they use their work.
 
 Once course content is properly decoupled from the software, it should be possible to experiment with alternative ways of using course content: for example, the creation of audiobooks or print material.
 
@@ -45,7 +45,7 @@ Here's a rough sketch of how  I imagine the milestones of this project:
 
 ### Alpha release
 
-* ☐ Course progress can be properly synchronised across devices
+* ☑️ Course progress can be properly synchronised across devices
 * ☑️ Course editor can be accessed by all course contributors
 * ☐ Statistics about course contributors are collected and published
 * ☑️ At least the basics of the Spanish course are ready
@@ -77,11 +77,15 @@ Here's a rough sketch of how  I imagine the milestones of this project:
 If you are interested in contributing to course development, please fill the following form: https://danielkantor196881.typeform.com/to/V00Paz. The project is in a very early stage right now, so you might not be able to contribute right away. Your work will be released in this GitHub repository and you will show up as a contributor here.
 
 ### Development and other forms of contribution
-[Development documentation is available on Read the Docs](https://librelingo.readthedocs.io/en/latest/)
+
+- [Getting started](https://github.com/kantord/LibreLingo/blob/master/docs/CONTRIBUTING.md)
+- [Delopment documentation is available on Read the Docs](https://librelingo.readthedocs.io/en/latest/)
 
 You can help LibreLingo by testing it and submitting feature requests or bug reports: https://github.com/kantord/LibreLingo/issues/new. If you want to get in touch, you can use my contact details on [my GitHub profile](https://github.com/kantord).
 
-There is also a Matrix/FreeNode IRC channel `#LibreLingo`, instructions for joining:
+#### Confused? Have a question?
+
+There is a Matrix/FreeNode IRC channel `#LibreLingo`, instructions for joining:
 
 * Matrix: [`#LibreLingo`](https://riot.im/app/#/room/#librelingo:matrix.org) on `matrix.org`
 * IRC: connect to `irc.freenode.net` with your favourite client and join `#LibreLingo`
@@ -109,7 +113,7 @@ The mascot is designed by [@almostdesigner](https://github.com/almostdesigner).
 ## Contributors ✨
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-29-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-30-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -152,10 +156,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://dalevisser.wordpress.com/"><img src="https://avatars1.githubusercontent.com/u/490575?v=4" width="100px;" alt=""/><br /><sub><b>Dale Visser</b></sub></a><br /><a href="https://github.com/kantord/LibreLingo/issues?q=author%3Adwvisser" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/oscarfrancois"><img src="https://avatars2.githubusercontent.com/u/32189143?v=4" width="100px;" alt=""/><br /><sub><b>oscarfrancois</b></sub></a><br /><a href="https://github.com/kantord/LibreLingo/commits?author=oscarfrancois" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/dhelmr"><img src="https://avatars2.githubusercontent.com/u/16763338?v=4" width="100px;" alt=""/><br /><sub><b>dhelmr</b></sub></a><br /><a href="https://github.com/kantord/LibreLingo/commits?author=dhelmr" title="Code">💻</a></td>
-    <td align="center"><a href="https://doamatto.xyz"><img src="https://avatars0.githubusercontent.com/u/30969346?v=4" width="100px;" alt=""/><br /><sub><b>Matt</b></sub></a><br /><a href="https://github.com/kantord/LibreLingo/pulls?q=is%3Apr+reviewed-by%3Adoamatto" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/kantord/LibreLingo/issues?q=author%3Adoamatto" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://doamatto.xyz"><img src="https://avatars0.githubusercontent.com/u/30969346?v=4" width="100px;" alt=""/><br /><sub><b>Matt</b></sub></a><br /><a href="https://github.com/kantord/LibreLingo/pulls?q=is%3Apr+reviewed-by%3Adoamatto" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/kantord/LibreLingo/issues?q=author%3Adoamatto" title="Bug reports">🐛</a> <a href="#maintenance-doamatto" title="Maintenance">🚧</a> <a href="https://github.com/kantord/LibreLingo/commits?author=doamatto" title="Code">💻</a> <a href="https://github.com/kantord/LibreLingo/commits?author=doamatto" title="Documentation">📖</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="http://www.lakka.tv"><img src="https://avatars1.githubusercontent.com/u/442722?v=4" width="100px;" alt=""/><br /><sub><b>Jean-André Santoni</b></sub></a><br /><a href="#ideas-kivutar" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="http://www.lakka.tv"><img src="https://avatars1.githubusercontent.com/u/442722?v=4" width="100px;" alt=""/><br /><sub><b>Jean-André Santoni</b></sub></a><br /><a href="#ideas-kivutar" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/kantord/LibreLingo/commits?author=kivutar" title="Documentation">📖</a> <a href="#design-kivutar" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/LucasCTN"><img src="https://avatars2.githubusercontent.com/u/16941916?v=4" width="100px;" alt=""/><br /><sub><b>Lucas Campos Teixeira e Nascimento</b></sub></a><br /><a href="https://github.com/kantord/LibreLingo/commits?author=LucasCTN" title="Documentation">📖</a> <a href="#ideas-LucasCTN" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
